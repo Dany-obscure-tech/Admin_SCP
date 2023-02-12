@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:padding="10dp"
+    tools:context=".ActivityEditDetails">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Parking admin name"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/parkingAdminName_editText"
+                android:textSize="16sp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/dark_grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:text="Parking admin email"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/parkingAdminEmail_editText"
+                android:textSize="16sp"
+                android:layout_marginBottom="20dp"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/dark_grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:text="Parking admin pin"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/parkingAdminPin_editText"
+                android:textSize="16sp"
+                android:inputType="number"
+                android:maxLength="6"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/dark_grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/edit_Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edit" />
+
+            <Button
+                android:id="@+id/remove_Button"
+                android:backgroundTint="@color/red"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Remove" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

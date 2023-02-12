@@ -1,6 +1,7 @@
 package com.example.adminscp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,15 @@ public class Adapter_parkingListRecyclerView extends RecyclerView.Adapter<Adapte
         holder.parkingName_textView.setText(parkingName_List.get(position));
         holder.parkingSlotNumber_textView.setText(parkingSlots_List.get(position));
         holder.parkingSubAdminName_textView.setText(parkingSubAdmin_List.get(position));
+        holder.edit_textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,ActivityEditDetails.class);
+                intent.putExtra("SUB_ADMIN",parkingSubAdmin_List.get(position).replace(".",","));
+                intent.putExtra("PARKING",parkingName_List.get(position));
+                context.startActivity(intent);
+            }
+        });
     }
 
 
@@ -48,12 +58,14 @@ public class Adapter_parkingListRecyclerView extends RecyclerView.Adapter<Adapte
         public TextView parkingName_textView;
         public TextView parkingSlotNumber_textView;
         public TextView parkingSubAdminName_textView;
+        public TextView edit_textView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.parkingName_textView = (TextView) itemView.findViewById(R.id.parkingName_textView);
             this.parkingSlotNumber_textView = (TextView) itemView.findViewById(R.id.parkingSlotNumber_textView);
             this.parkingSubAdminName_textView = (TextView) itemView.findViewById(R.id.parkingSubAdminName_textView);
+            this.edit_textView = (TextView) itemView.findViewById(R.id.edit_textView);
         }
     }
 }

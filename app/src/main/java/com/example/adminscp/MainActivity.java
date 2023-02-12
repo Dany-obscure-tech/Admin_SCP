@@ -21,6 +21,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     Button addParking_Button;
+    Button logs_Button;
     DatabaseReference databaseReference;
     RecyclerView parkingList_recyclerView;
     Adapter_parkingListRecyclerView adapter_parkingListRecyclerView;
@@ -40,6 +41,15 @@ public class MainActivity extends AppCompatActivity {
         parkingSlots_List = new ArrayList<>();
         parkingSubAdmin_List = new ArrayList<>();
         addParking_Button = (Button) findViewById(R.id.addParking_Button);
+        logs_Button = (Button) findViewById(R.id.logs_Button);
+
+        logs_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,ActivityLogs.class);
+                startActivity(intent);
+            }
+        });
 
         parkingList_recyclerView = findViewById(R.id.parkingList_recyclerView);
         parkingList_recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 1));
@@ -68,5 +78,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        recreate();
     }
 }

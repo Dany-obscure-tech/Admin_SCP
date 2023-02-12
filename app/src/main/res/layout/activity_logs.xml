@@ -6,25 +6,10 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:padding="20dp"
-    tools:context=".MainActivity">
-
-    <Button
-        android:id="@+id/logs_Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Logs" />
-
-    <Button
-        android:id="@+id/addParking_Button"
-        android:layout_below="@+id/logs_Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="Add parking" />
+    tools:context=".ActivityLogs">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/parkingList_recyclerView"
-        android:layout_below="@+id/addParking_Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

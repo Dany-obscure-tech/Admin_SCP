@@ -13,6 +13,12 @@
         android:theme="@style/Theme.AdminSCP"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityLogs"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityEditDetails"
+            android:exported="false" />
+        <activity
             android:name=".ActivityNewParking"
             android:exported="false">
             <meta-data
