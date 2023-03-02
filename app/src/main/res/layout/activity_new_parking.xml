@@ -49,56 +49,25 @@
                 android:textColor="@color/dark_grey"
                 android:textSize="16sp" />
 
-            <TextView
-                android:text="Parking admin name"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:id="@+id/parkingAdminName_editText"
-                android:textSize="16sp"
-                android:layout_marginBottom="20dp"
-                android:textColor="@color/dark_grey"
+            <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
+                android:id="@+id/spinner1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:text="Parking admin email"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:id="@+id/parkingAdminEmail_editText"
-                android:textSize="16sp"
-                android:layout_marginBottom="20dp"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/dark_grey"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:text="Parking admin pin"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:id="@+id/parkingAdminPin_editText"
-                android:textSize="16sp"
-                android:inputType="number"
-                android:maxLength="6"
-                android:layout_marginBottom="20dp"
-                android:textColor="@color/dark_grey"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                app:smsp_floatingLabelColor="@color/dark_grey"
+                app:smsp_floatingLabelText="Admin"
+                app:smsp_hint="Select Admin"
+                app:smsp_hintColor="@color/dark_grey"
+                app:smsp_itemColor="@color/black"
+                app:smsp_itemListColor="@color/dark_grey"
+                app:smsp_itemListHintBackgroundColor="#808080"
+                app:smsp_itemListHintColor="#FFFFFF"
+                app:smsp_multilineError="false"
+                app:smsp_selectedItemListColor="@color/dark_yellow"
+                android:layout_marginBottom="20dp"/>
 
             <Button
                 android:id="@+id/createParking_Button"
+                android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Create parking" />

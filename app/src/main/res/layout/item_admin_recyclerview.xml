@@ -7,36 +7,36 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/parkingName_textView"
-        android:text="Parking Name"
+        android:id="@+id/adminEmail_textView"
+        android:text="Admin Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/parkingSlots_textView"
-        android:text="Total Parking Slots : "
-        android:layout_below="@+id/parkingName_textView"
+        android:id="@+id/name_textView"
+        android:text="Admin Name : "
+        android:layout_below="@+id/adminEmail_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/parkingSlotNumber_textView"
-        android:layout_toRightOf="@+id/parkingSlots_textView"
-        android:layout_below="@+id/parkingName_textView"
+        android:id="@+id/adminName_textView"
+        android:layout_toRightOf="@+id/name_textView"
+        android:layout_below="@+id/adminEmail_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/parkingSubAdmin_textView"
-        android:layout_below="@+id/parkingSlotNumber_textView"
-        android:text="Sub Admin : "
+        android:id="@+id/parking_textView"
+        android:layout_below="@+id/name_textView"
+        android:text="Parking : "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/parkingSubAdminName_textView"
-        android:layout_toRightOf="@+id/parkingSubAdmin_textView"
-        android:layout_below="@+id/parkingSlotNumber_textView"
+        android:id="@+id/adminParking_textView"
+        android:layout_toRightOf="@+id/parking_textView"
+        android:layout_below="@+id/name_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -44,7 +44,7 @@
         android:id="@+id/edit_textView"
         android:padding="10dp"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/parkingSubAdmin_textView"
+        android:layout_below="@+id/adminParking_textView"
         android:text="Edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

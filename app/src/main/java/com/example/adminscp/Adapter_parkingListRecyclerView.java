@@ -40,9 +40,10 @@ public class Adapter_parkingListRecyclerView extends RecyclerView.Adapter<Adapte
         holder.edit_textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,ActivityEditDetails.class);
+                Intent intent = new Intent(context,ActivityEditParking.class);
                 intent.putExtra("SUB_ADMIN",parkingSubAdmin_List.get(position).replace(".",","));
                 intent.putExtra("PARKING",parkingName_List.get(position));
+                intent.putExtra("PARKING_SLOTS",parkingSlots_List.get(position));
                 context.startActivity(intent);
             }
         });

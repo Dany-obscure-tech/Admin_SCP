@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:padding="10dp"
-    tools:context=".ActivityEditDetails">
+    tools:context=".ActivityEditParking">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,60 +18,44 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="Parking admin name"
+                android:text="Parking name"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <EditText
-                android:id="@+id/parkingAdminName_editText"
+                android:id="@+id/parkingName_editText"
                 android:textSize="16sp"
-                android:layout_marginBottom="20dp"
                 android:textColor="@color/dark_grey"
+                android:layout_marginBottom="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:text="Parking admin email"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/parkingAdminEmail_textView"
-                android:textSize="16sp"
-                android:text="Email"
-                android:layout_marginBottom="20dp"
-                android:textColor="@color/dark_grey"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:text="Parking admin pin"
+                android:text="Number of slots"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <EditText
-                android:id="@+id/parkingAdminPin_editText"
-                android:textSize="16sp"
+                android:id="@+id/numberOfSlots_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:inputType="number"
-                android:maxLength="6"
-                android:layout_marginBottom="20dp"
+                android:maxLength="2"
                 android:textColor="@color/dark_grey"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textSize="16sp" />
 
             <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
                 android:id="@+id/spinner1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:smsp_floatingLabelColor="@color/dark_grey"
-                app:smsp_floatingLabelText="Parking"
-                app:smsp_hint="Select Parking"
+                app:smsp_floatingLabelText="Admin"
+                app:smsp_hint="Select Admin"
                 app:smsp_hintColor="@color/dark_grey"
                 app:smsp_itemColor="@color/black"
                 app:smsp_itemListColor="@color/dark_grey"

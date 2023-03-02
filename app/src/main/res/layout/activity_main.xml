@@ -15,16 +15,69 @@
         android:text="Logs" />
 
     <Button
-        android:id="@+id/addParking_Button"
+        android:id="@+id/users_Button"
         android:layout_below="@+id/logs_Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Users" />
+
+    <Button
+        android:id="@+id/addAdmin_Button"
+        android:layout_below="@+id/users_Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Admin" />
+
+
+    <Button
+        android:id="@+id/addParking_Button"
+        android:layout_below="@+id/addAdmin_Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:text="Add parking" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/parkingList_recyclerView"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_below="@+id/addParking_Button"
+        android:id="@+id/linearLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/parking_Button"
+            android:enabled="false"
+            android:layout_below="@+id/addAdmin_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:text="Parking List" />
+
+        <Button
+            android:id="@+id/admin_Button"
+            android:layout_weight="1"
+            android:layout_below="@+id/addAdmin_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Admin List" />
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:visibility="visible"
+        android:id="@+id/parkingList_recyclerView"
+        android:layout_below="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
+        android:id="@+id/adminList_recyclerView"
+        android:layout_below="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

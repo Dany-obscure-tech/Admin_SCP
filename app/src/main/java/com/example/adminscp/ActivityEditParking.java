@@ -23,9 +23,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityNewParking extends AppCompatActivity {
-
-    Button createParking_Button;
+public class ActivityEditParking extends AppCompatActivity {
+    String parkingName;
+    String parkingSlots;
+    String newAdminName;
+    String adminName;
+    Button edit_Button;
+    Button remove_Button;
     Boolean valid = true;
     int slots;
     DatabaseReference databaseReference;
@@ -35,21 +39,28 @@ public class ActivityNewParking extends AppCompatActivity {
 
     SmartMaterialSpinner<String> spParking;
     List<String> admin_list;
-    String adminName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_parking);
+        setContentView(R.layout.activity_edit_parking);
+
+        parkingName = getIntent().getStringExtra("PARKING");
+        adminName = getIntent().getStringExtra("SUB_ADMIN");
+        parkingSlots = getIntent().getStringExtra("PARKING_SLOTS");
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        createParking_Button = (Button) findViewById(R.id.createParking_Button);
+        edit_Button = (Button) findViewById(R.id.edit_Button);
+        remove_Button = (Button) findViewById(R.id.remove_Button);
 
         parkingName_editText = (EditText) findViewById(R.id.parkingName_editText);
-        numberOfSlots_editText = (EditText) findViewById(R.id.numberOfSlots_editText);
+        parkingName_editText.setText(parkingName);
 
-        createParking_Button.setOnClickListener(new View.OnClickListener() {
+        numberOfSlots_editText = (EditText) findViewById(R.id.numberOfSlots_editText);
+        numberOfSlots_editText.setText(parkingSlots);
+
+        edit_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (parkingName_editText.getText().toString().isEmpty()){
@@ -63,11 +74,22 @@ public class ActivityNewParking extends AppCompatActivity {
 
 
                 if (valid){
+                    databaseReference.child("Parkings").child(parkingName).removeValue();
+                    databaseReference.child("Slots").child(parkingName).removeValue();
+                    databaseReference.child("Enterance").child(parkingName).removeValue();
+                    databaseReference.child("Registration").child(parkingName).removeValue();
+                    databaseReference.child("Gates").child(parkingName).removeValue();
+
                     databaseReference.child("Parkings").child(String.valueOf(parkingName_editText.getText())).child("number_of_slots").setValue(numberOfSlots_editText.getText().toString());
-                    databaseReference.child("Parkings").child(String.valueOf(parkingName_editText.getText())).child("sub_admin").setValue(adminName);
-                    if (!adminName.equals("No Admin")){
-                        databaseReference.child("Admin").child(String.valueOf(adminName).replace(".",",")).child("parking").setValue(parkingName_editText.getText().toString());
+                    databaseReference.child("Parkings").child(String.valueOf(parkingName_editText.getText())).child("sub_admin").setValue(newAdminName);
+                    if (!newAdminName.equals("No Admin")){
+                        databaseReference.child("Admin").child(String.valueOf(newAdminName).replace(".",",")).child("parking").setValue(parkingName_editText.getText().toString());
                     }
+
+                    if (!adminName.equals("No Admin")){
+                        databaseReference.child("Admin").child(String.valueOf(adminName).replace(".",",")).child("parking").setValue("No Parking");
+                    }
+
 
                     slots = Integer.parseInt(numberOfSlots_editText.getText().toString());
 
@@ -90,10 +112,20 @@ public class ActivityNewParking extends AppCompatActivity {
                 }
             }
         });
+        remove_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                databaseReference.child("Parkings").child(parkingName).removeValue();
+                databaseReference.child("Slots").child(parkingName).removeValue();
+                databaseReference.child("Enterance").child(parkingName).removeValue();
+                databaseReference.child("Registration").child(parkingName).removeValue();
+                databaseReference.child("Gates").child(parkingName).removeValue();
+                databaseReference.child("Admin").child(String.valueOf(adminName).replace(".",",")).child("parking").setValue("No Parking");
+                finish();
+            }
+        });
 
-
-
-        setTitle("Add Parking");
+        setTitle("Edit Parking");
         ActionBar actionBar = getSupportActionBar();
 
         // showing the back button in action bar
@@ -109,7 +141,12 @@ public class ActivityNewParking extends AppCompatActivity {
         spParking = findViewById(R.id.spinner1);
         admin_list = new ArrayList<>();
 
+        if (!adminName.equals("No Admin")){
+            admin_list.add(adminName.replace(",","."));
+        }
+
         admin_list.add("No Admin");
+        spParking.setSelection(0);
         databaseReference.child("Admin").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -117,7 +154,6 @@ public class ActivityNewParking extends AppCompatActivity {
                     if (snapshot1.child("parking").getValue().equals("No Parking")){
                         admin_list.add(snapshot1.getKey().toString().replace(",","."));
                     }
-
                 }
             }
 
@@ -134,8 +170,8 @@ public class ActivityNewParking extends AppCompatActivity {
         spParking.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                adminName = admin_list.get(position);
-                createParking_Button.setEnabled(true);
+                newAdminName = admin_list.get(position);
+                edit_Button.setEnabled(true);
             }
 
             @Override
