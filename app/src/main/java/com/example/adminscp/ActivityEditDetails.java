@@ -46,7 +46,6 @@ public class ActivityEditDetails extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser user;
-    AuthCredential credential;
     private SmartMaterialSpinner<String> spParking;
     private List<String> parking_list;
 
@@ -82,7 +81,6 @@ public class ActivityEditDetails extends AppCompatActivity {
                     parkingAdminName_editText.setText(snapshot.child("name").getValue().toString());
                     parkingAdminPin_editText.setText(snapshot.child("pin").getValue().toString());
 
-                    credential = EmailAuthProvider.getCredential(getIntent().getStringExtra("SUB_ADMIN").replace(",","."), snapshot.child("pin").getValue().toString());
                     mAuth.signInWithEmailAndPassword(getIntent().getStringExtra("SUB_ADMIN").replace(",","."), snapshot.child("pin").getValue().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
