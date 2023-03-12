@@ -85,6 +85,8 @@
                 android:id="@+id/edit_Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/rounded_button"
+                android:layout_marginBottom="10dp"
                 android:text="Edit" />
 
             <Button
@@ -92,6 +94,8 @@
                 android:backgroundTint="@color/red"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/rounded_button"
+                style="@style/red_btn_style"
                 android:text="Remove" />
 
         </LinearLayout>

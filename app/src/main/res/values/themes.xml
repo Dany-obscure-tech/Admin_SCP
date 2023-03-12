@@ -13,4 +13,8 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="red_btn_style" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/red</item>
+    </style>
 </resources>
