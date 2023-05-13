@@ -81,6 +81,8 @@ public class LoginActivity extends AppCompatActivity {
                                         if (task.isSuccessful()){
                                             superAdminRef.child(email_editText.getText().toString().toLowerCase(Locale.ROOT).replace(".",",")).child("pin").setValue(pin_editText.getText().toString());
                                             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                                            AdminDetails_class.getInstance().setEmail(email_editText.getText().toString());
+                                            AdminDetails_class.getInstance().setPin(pin_editText.getText().toString());
                                             startActivity(intent);
 
                                         }else {

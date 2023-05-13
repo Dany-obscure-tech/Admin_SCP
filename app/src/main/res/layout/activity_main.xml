@@ -8,6 +8,13 @@
     android:padding="20dp"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/settings_Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Settings" />
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayout1"
         android:orientation="horizontal"
@@ -92,8 +99,6 @@
             android:layout_marginLeft="5dp"
             android:text="Admin List" />
 
-
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -109,5 +114,7 @@
         android:layout_below="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+
 
 </RelativeLayout>

@@ -23,6 +23,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     Button parking_Button;
     Button admin_Button;
+    Button settings_Button;
     Button users_Button;
     Button addParking_Button;
     Button addAdmin_Button;
@@ -62,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
         parking_Button = (Button) findViewById(R.id.parking_Button);
         admin_Button = (Button) findViewById(R.id.admin_Button);
         users_Button = (Button) findViewById(R.id.users_Button);
+        settings_Button = (Button) findViewById(R.id.settings_Button);
+
+        settings_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,ActivitySettings.class);
+                startActivity(intent);
+            }
+        });
 
         users_Button.setOnClickListener(new View.OnClickListener() {
             @Override
