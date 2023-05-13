@@ -120,7 +120,10 @@ public class ActivityEditParking extends AppCompatActivity {
                 databaseReference.child("Enterance").child(parkingName).removeValue();
                 databaseReference.child("Registration").child(parkingName).removeValue();
                 databaseReference.child("Gates").child(parkingName).removeValue();
-                databaseReference.child("Admin").child(String.valueOf(adminName).replace(".",",")).child("parking").setValue("No Parking");
+
+                if(!adminName.equals("No Admin")){
+                    databaseReference.child("Admin").child(String.valueOf(adminName).replace(".",",")).child("parking").setValue("No Parking");
+                }
                 finish();
             }
         });

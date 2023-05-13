@@ -87,6 +87,82 @@ public class ActivityEditDetails extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 user = mAuth.getCurrentUser();
+                                edit_Button.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                        if (parkingAdminName_editText.getText().toString().isEmpty()){
+                                            parkingAdminName_editText.setError("This field can not be empty");
+                                            valid = false;
+                                        }
+                                        if (parkingAdminEmail_textView.getText().toString().isEmpty()){
+                                            parkingAdminEmail_textView.setError("This field can not be empty");
+                                            valid = false;
+                                        }
+                                        if (parkingAdminPin_editText.getText().toString().isEmpty()){
+                                            parkingAdminPin_editText.setError("This field can not be empty");
+                                            valid = false;
+                                        }
+
+                                        if (!isValidEmail(parkingAdminEmail_textView.getText().toString())){
+                                            parkingAdminEmail_textView.setError("Invaid Email");
+                                            valid = false;
+                                        }
+
+                                        if (valid){
+                                            databaseReference.child("Admin").child(getIntent().getStringExtra("SUB_ADMIN")).removeValue();
+                                            databaseReference.child("Admin").child(String.valueOf(parkingAdminEmail_textView.getText()).replace(".",",")).child("name").setValue(String.valueOf(parkingAdminName_editText.getText()));
+                                            databaseReference.child("Admin").child(String.valueOf(parkingAdminEmail_textView.getText()).replace(".",",")).child("pin").setValue(String.valueOf(parkingAdminPin_editText.getText()));
+                                            databaseReference.child("Admin").child(String.valueOf(parkingAdminEmail_textView.getText()).replace(".",",")).child("parking").setValue(String.valueOf(newParkingName));
+
+                                            if (!parkingName.equals("No Parking")){
+                                                databaseReference.child("Parkings").child(String.valueOf(parkingName)).child("sub_admin").setValue("No Admin");
+                                            }
+                                            if (!newParkingName.equals("No Parking")){
+                                                databaseReference.child("Parkings").child(String.valueOf(newParkingName)).child("sub_admin").setValue(parkingAdminEmail_textView.getText().toString());
+                                            }
+
+                                            user.updatePassword(parkingAdminPin_editText.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        finish();
+                                                    } else {
+                                                        Toast.makeText(ActivityEditDetails.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+
+
+                                        }else {
+                                            valid = true;
+                                        }
+                                    }
+                                });
+
+                                remove_Button.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        databaseReference.child("Admin").child(getIntent().getStringExtra("SUB_ADMIN")).removeValue();
+                                        if (!parkingName.equals("No Parking")){
+                                            databaseReference.child("Parkings").child(String.valueOf(parkingName)).child("sub_admin").setValue("No Admin");
+                                        }
+
+                                        user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()){
+                                                    finish();
+                                                }else {
+                                                    Toast.makeText(ActivityEditDetails.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+
+                                    }
+                                });
+
+                                initSpinner();
                             } else {
                                 Toast.makeText(ActivityEditDetails.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                             }
@@ -105,79 +181,7 @@ public class ActivityEditDetails extends AppCompatActivity {
         }
 
 
-        edit_Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                if (parkingAdminName_editText.getText().toString().isEmpty()){
-                    parkingAdminName_editText.setError("This field can not be empty");
-                    valid = false;
-                }
-                if (parkingAdminEmail_textView.getText().toString().isEmpty()){
-                    parkingAdminEmail_textView.setError("This field can not be empty");
-                    valid = false;
-                }
-                if (parkingAdminPin_editText.getText().toString().isEmpty()){
-                    parkingAdminPin_editText.setError("This field can not be empty");
-                    valid = false;
-                }
-
-                if (!isValidEmail(parkingAdminEmail_textView.getText().toString())){
-                    parkingAdminEmail_textView.setError("Invaid Email");
-                    valid = false;
-                }
-
-                if (valid){
-                    databaseReference.child("Admin").child(getIntent().getStringExtra("SUB_ADMIN")).removeValue();
-                    databaseReference.child("Admin").child(String.valueOf(parkingAdminEmail_textView.getText()).replace(".",",")).child("name").setValue(String.valueOf(parkingAdminName_editText.getText()));
-                    databaseReference.child("Admin").child(String.valueOf(parkingAdminEmail_textView.getText()).replace(".",",")).child("pin").setValue(String.valueOf(parkingAdminPin_editText.getText()));
-                    databaseReference.child("Admin").child(String.valueOf(parkingAdminEmail_textView.getText()).replace(".",",")).child("parking").setValue(String.valueOf(newParkingName));
-
-                    if (!parkingName.equals("No Parking")){
-                        databaseReference.child("Parkings").child(String.valueOf(parkingName)).child("sub_admin").setValue("No Admin");
-                    }
-                    if (!newParkingName.equals("No Parking")){
-                        databaseReference.child("Parkings").child(String.valueOf(newParkingName)).child("sub_admin").setValue(parkingAdminEmail_textView.getText().toString());
-                    }
-
-                    user.updatePassword(parkingAdminPin_editText.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                finish();
-                            } else {
-                                Toast.makeText(ActivityEditDetails.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-
-
-                }else {
-                    valid = true;
-                }
-            }
-        });
-
-        remove_Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                databaseReference.child("Admin").child(getIntent().getStringExtra("SUB_ADMIN")).removeValue();
-                databaseReference.child("Parkings").child(String.valueOf(parkingName)).child("sub_admin").setValue("No Admin");
-                user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            finish();
-                        }else {
-                            Toast.makeText(ActivityEditDetails.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-
-            }
-        });
-
-        initSpinner();
 
 
 

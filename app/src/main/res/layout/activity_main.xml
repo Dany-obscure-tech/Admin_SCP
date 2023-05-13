@@ -16,8 +16,9 @@
         android:text="Settings" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_below="@+id/settings_Button"
         android:id="@+id/linearLayout1"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -45,7 +46,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayout2"
         android:layout_below="@+id/linearLayout1"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_marginBottom="20dp"
         android:layout_height="wrap_content">
